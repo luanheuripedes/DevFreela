@@ -25,3 +25,5 @@ C:\Users\heuri\Documents\Formacao .NET Direto ao Ponto\DevFreela\DevFreela.API\o
 C:\Users\heuri\Documents\Formacao .NET Direto ao Ponto\DevFreela\DevFreela.API\obj\Debug\net6.0\DevFreela.API.pdb
 C:\Users\heuri\Documents\Formacao .NET Direto ao Ponto\DevFreela\DevFreela.API\obj\Debug\net6.0\DevFreela.API.genruntimeconfig.cache
 C:\Users\heuri\Documents\Formacao .NET Direto ao Ponto\DevFreela\DevFreela.API\obj\Debug\net6.0\ref\DevFreela.API.dll
+C:\Users\heuri\Documents\Formacao .NET Direto ao Ponto\DevFreela\DevFreela.API\obj\Debug\net6.0\DevFreela.API.Properties.Resources.resources
+C:\Users\heuri\Documents\Formacao .NET Direto ao Ponto\DevFreela\DevFreela.API\obj\Debug\net6.0\DevFreela.API.csproj.GenerateResource.cache

@@ -1,4 +1,10 @@
+using DevFreela.API.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+//Acessar propriedades appsettings
+builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("OpeningTime"));
 
 // Add services to the container.
 
