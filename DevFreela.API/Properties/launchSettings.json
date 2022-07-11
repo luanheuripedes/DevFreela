@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "DevFreela.API": {
+    "DevFreela.APIDevelopment": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

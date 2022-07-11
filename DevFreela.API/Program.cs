@@ -6,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 //Acessar propriedades appsettings
 builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("OpeningTime"));
 
+// Injeção de dependencia ciclo de vida
+//builder.Services.AddSingleton<ExampleClass>(e => new ExampleClass { Name = "Initial Stage" });
+//builder.Services.AddScoped<ExampleClass>(e => new ExampleClass { Name = "Initial Stage" });
+
 // Add services to the container.
 
 builder.Services.AddControllers();
