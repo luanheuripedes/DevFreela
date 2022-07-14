@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Core.Enums
 {
-    internal class ProjectStatusEnum
+    public enum ProjectStatusEnum
     {
+        Created,
+        InProgress,
+        Supended,
+        Cancelled,
+        Finished,
     }
 }
