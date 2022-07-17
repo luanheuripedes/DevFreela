@@ -53,7 +53,7 @@ namespace DevFreela.Application.Services.Implementations
             var projects = _contex.Projects;
 
             var projectsViewModel = projects
-                .Select(p => new ProjectViewModel(p.Title, p.CreatedAt)).ToList();
+                .Select(p => new ProjectViewModel(p.Title, p.CreatedAt,p.Id)).ToList();
 
             return projectsViewModel;
         }
@@ -62,8 +62,14 @@ namespace DevFreela.Application.Services.Implementations
         {
             var projects = _contex.Projects.SingleOrDefault(p => p.Id == id);
 
+            if(projects == null)
+            {
+                return null;
+            }
+
             var projectDetailsViewModel = new ProjectDetailsViewModel(
-                projects.Id,projects.Title,
+                projects.Id,
+                projects.Title,
                 projects.Description,
                 projects.TotalCost,
                 projects.StartedAt,
