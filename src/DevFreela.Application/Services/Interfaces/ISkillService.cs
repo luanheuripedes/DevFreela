@@ -1,4 +1,4 @@
-﻿using DevFreela.Application.InputModels;
+﻿using DevFreela.Application.ViewModels.SkillViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

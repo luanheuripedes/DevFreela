@@ -1,4 +1,4 @@
-﻿namespace DevFreela.API.Models
+﻿namespace DevFreela.API.Models.ModelsProject
 {
     public class UpdateProjectModel
     {

@@ -1,5 +1,5 @@
-﻿using DevFreela.Application.InputModels;
-using DevFreela.Application.Services.Interfaces;
+﻿using DevFreela.Application.Services.Interfaces;
+using DevFreela.Application.ViewModels.SkillViewModels;
 using DevFreela.Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevFreela.Application.InputModels
+namespace DevFreela.Application.ViewModels.SkillViewModels
 {
     public class SkillViewModel
     {

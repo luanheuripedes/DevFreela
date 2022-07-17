@@ -1,4 +1,6 @@
 ﻿using DevFreela.API.Models;
+using DevFreela.API.Models.ModelsProject;
+using DevFreela.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -8,6 +10,8 @@ namespace DevFreela.API.Controllers
     public class ProjectsController : ControllerBase
     {
         public readonly OpeningTimeOption _option;
+        public readonly IProjectServices _projectServices;
+
 
         public ProjectsController(IOptions<OpeningTimeOption> option, ExampleClass exampleClass)
         {

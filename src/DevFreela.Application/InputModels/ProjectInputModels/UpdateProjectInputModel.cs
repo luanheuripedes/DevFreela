@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevFreela.Application.InputModels
+namespace DevFreela.Application.InputModels.ProjectInputModels
 {
-    public class NewProjectInputModel
+    public class UpdateProjectInputModel
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal TotalCost { get; set; }
 
-        public int IdClient { get; set; }
-        public int IdFreelancer { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevFreela.Application.ViewModels
+namespace DevFreela.Application.ViewModels.ProjectViewModels
 {
     public class ProjectDetailsViewModel
     {
