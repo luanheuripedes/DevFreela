@@ -22,5 +22,9 @@ namespace DevFreela.Core.Entities
 
         public int IdProject { get; private set; }
         public int IdUser { get; private set; }
+
+        //Navegação
+        public Project Project { get; private set; }
+        public User User { get; private set; }
     }
 }

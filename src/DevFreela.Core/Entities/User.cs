@@ -30,6 +30,6 @@ namespace DevFreela.Core.Entities
 
         public List<UserSkill> Skills { get; private set; }
         public List<Project> OwnedProjects { get; private set; } //se ele for contratar
-        public List<Project> FreelanceProjects { get; private set; } // se ele for trabalahar projetos
+        public List<Project> FreelanceProjects { get; private set; } // se ele for trabalahar projetos //
     }
 }

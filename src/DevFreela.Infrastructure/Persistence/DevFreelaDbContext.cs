@@ -14,10 +14,17 @@ namespace DevFreela.Infrastructure.Persistence
         {
             
         }
-        public DbSet<Project> Projects { get;  set; }
-        public DbSet<User> Users { get;  set; }
-        public DbSet<Skill> Skills { get;  set; }
+
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Skill> Skills { get; set; }
         public DbSet<UserSkill> UserSkills { get; set; }
         public DbSet<ProjectComment> ProjectsComments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DevFreelaDbContext).Assembly);
+        }
+        
     }
 }

@@ -37,6 +37,8 @@ namespace DevFreela.Core.Entities
 
         //Navegação
         public List<ProjectComment> Comments { get; private set; }
+        public User Client { get; private set; }
+        public User Freelancer { get; private set; }
 
         public void CancelProject()
         {
