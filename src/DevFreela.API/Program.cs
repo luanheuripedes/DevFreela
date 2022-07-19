@@ -1,14 +1,16 @@
 using DevFreela.API.Models;
+using DevFreela.Application.Commands.CreateProject;
 using DevFreela.Application.Services.Implementations;
 using DevFreela.Application.Services.Interfaces;
 using DevFreela.Infrastructure.Persistence;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 //Acessar propriedades appsettings
-builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("OpeningTime"));
+//builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("OpeningTime"));
 
 // Injeção de dependencia ciclo de vida
 //builder.Services.AddSingleton<ExampleClass>(e => new ExampleClass { Name = "Initial Stage" });
@@ -21,6 +23,11 @@ builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServe
 builder.Services.AddScoped<IProjectServices, ProjectServices>();
 builder.Services.AddScoped<ISkillService, SkillService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
+
+//Adiciona o MediatR
+//busca no Assembly Application todas as classes que implementem IRequestHandler<>
+//e associar esse handler para cada command respectivo no projeto
+builder.Services.AddMediatR(typeof(CreateProjectCommand));
 
 
 builder.Services.AddControllers();
