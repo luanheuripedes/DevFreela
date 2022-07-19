@@ -21,7 +21,6 @@ var connectionString = builder.Configuration.GetConnectionString("DevFreelaCs");
 builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IProjectServices, ProjectServices>();
-builder.Services.AddScoped<ISkillService, SkillService>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 
 //Adiciona o MediatR

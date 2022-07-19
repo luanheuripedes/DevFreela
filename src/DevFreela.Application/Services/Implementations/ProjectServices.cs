@@ -32,16 +32,6 @@ namespace DevFreela.Application.Services.Implementations
             _contex.SaveChanges();
         }
 
-        public List<ProjectViewModel> GetAll(string query)
-        {
-            var projects = _contex.Projects;
-
-            var projectsViewModel = projects
-                .Select(p => new ProjectViewModel(p.Title, p.CreatedAt,p.Id)).ToList();
-
-            return projectsViewModel;
-        }
-
         public ProjectDetailsViewModel GetById(int id)
         {
             var projects = _contex.Projects
