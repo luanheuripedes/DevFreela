@@ -24,8 +24,8 @@ builder.Services.AddScoped<IProjectServices, ProjectServices>();
 builder.Services.AddScoped<IUsersService, UsersService>();
 
 //Adiciona o MediatR
-//busca no Assembly Application todas as classes que implementem IRequestHandler<>
-//e associar esse handler para cada command respectivo no projeto
+//busca no Assembly Application todas as classes que implementem IRequest<> 
+//e associar a todos o commands handler que implementam IRequestHandler<>
 builder.Services.AddMediatR(typeof(CreateProjectCommand));
 
 

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Application.Commands.CreateProject
 {
+    //Vai ter as informações para cadastrar o projeto
     public class CreateProjectCommand:IRequest<int>
     {
         public string Title { get; set; }

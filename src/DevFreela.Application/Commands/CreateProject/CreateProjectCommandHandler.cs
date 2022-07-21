@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Application.Commands.CreateProject
 {
+    //Classe que vai tratar e guardar as informações no banco de dados
     public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, int>
     {
         private readonly DevFreelaDbContext _contex;

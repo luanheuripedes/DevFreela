@@ -25,12 +25,6 @@ namespace DevFreela.Application.Services.Implementations
             _connectionString = configuration.GetConnectionString("DevFreelaCs");
         }
 
-        public void Finish(int id)
-        {
-            var project = _contex.Projects.SingleOrDefault(p => p.Id == id);
-            project.FinishProject();
-            _contex.SaveChanges();
-        }
 
         public ProjectDetailsViewModel GetById(int id)
         {
@@ -55,26 +49,6 @@ namespace DevFreela.Application.Services.Implementations
                 projects.Freelancer.Name);
 
             return projectDetailsViewModel; 
-        }
-
-        public void Start(int id)
-        {
-            var project = _contex.Projects.SingleOrDefault(p => p.Id == id);
-
-            project.StartProject();
-            //_contex.SaveChanges();
-
-            using (var sqlConnection = new SqlConnection(_connectionString))
-            {
-                sqlConnection.Open();
-
-                var sql = "UPDATE Projects SET Status = @status, StartedAt = @startedat Where Id = @id";
-
-                sqlConnection.Execute(sql, new { status = project.Status, startedat = project.StartedAt, id = id});
-
-                sqlConnection.Close();
-
-            }
         }
 
     }

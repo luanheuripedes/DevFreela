@@ -12,7 +12,5 @@ namespace DevFreela.Application.Services.Interfaces
     {
         ProjectDetailsViewModel GetById(int id);
 
-        void Start(int id);
-        void Finish(int id);
     }
 }

@@ -1,7 +1,10 @@
 ﻿using DevFreela.API.Models;
 using DevFreela.API.Models.ModelsProject;
+using DevFreela.Application.Commands.CreateComment;
 using DevFreela.Application.Commands.CreateProject;
 using DevFreela.Application.Commands.DeleteProject;
+using DevFreela.Application.Commands.FinishProject;
+using DevFreela.Application.Commands.StartProject;
 using DevFreela.Application.Commands.UpdateProject;
 using DevFreela.Application.InputModels.ProjectInputModels;
 using DevFreela.Application.Queries.GetAllProjects;
@@ -93,7 +96,7 @@ namespace DevFreela.API.Controllers
 
         // api/projectes/1/comments POST
         [HttpPost("{id}/comments")]
-        public async Task<IActionResult> PostComment(int id, [FromBody] CreateProjectCommand command)
+        public async Task<IActionResult> PostComment(int id, [FromBody] CreateCommentCommand command)
         {
             await _mediator.Send(command);
             return NoContent();
@@ -101,17 +104,19 @@ namespace DevFreela.API.Controllers
 
         // api/projects/1/start
         [HttpPut("{id}/start")]
-        public IActionResult Start(int id)
+        public async Task<IActionResult> Start(int id)
         {
-            _projectServices.Start(id);
+            var command = new StartProjectCommand(id);
+            await _mediator.Send(command);
             return NoContent();
         }
 
         // api/projects/1/finish
         [HttpPut("{id}/finish")]
-        public IActionResult Finish(int id)
+        public async Task<IActionResult> Finish(int id)
         {
-            _projectServices.Finish(id);
+            var command = new FinishProjectCommand(id);
+            await _mediator.Send(command);
             return NoContent();
         }
     }
