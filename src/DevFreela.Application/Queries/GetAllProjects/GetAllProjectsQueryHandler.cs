@@ -23,8 +23,8 @@ namespace DevFreela.Application.Queries.GetAllProjects
         {
             var projects = _contex.Projects;
 
-            var projectsViewModel = await projects
-                .Select(p => new ProjectViewModel(p.Title, p.CreatedAt, p.Id)).ToListAsync();
+            var projectsViewModel = await projects.Select(p => new ProjectViewModel(p.Title, p.CreatedAt, p.Id))
+                .Where(x=> x.Title == request.Query).ToListAsync();
 
             return projectsViewModel;
         }
