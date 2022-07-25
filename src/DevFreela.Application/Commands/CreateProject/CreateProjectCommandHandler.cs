@@ -1,4 +1,5 @@
 ﻿using DevFreela.Core.Entities;
+using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
 using MediatR;
 using System;
@@ -12,20 +13,17 @@ namespace DevFreela.Application.Commands.CreateProject
     //Classe que vai tratar e guardar as informações no banco de dados
     public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, int>
     {
-        private readonly DevFreelaDbContext _contex;
+        private readonly IProjectRepository _repository;
 
-        public CreateProjectCommandHandler(DevFreelaDbContext contex)
+        public CreateProjectCommandHandler(IProjectRepository repository)
         {
-            _contex = contex;
+            _repository = repository;
         }
 
         public async Task<int> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
             var project = new Project(request.Title, request.Description, request.IdClient, request.IdFreelancer, request.TotalCost);
-
-            await _contex.Projects.AddAsync(project);
-            await _contex.SaveChangesAsync();
-
+            await _repository.CreateProjectAsync(project);
             return project.Id;
         }
     }

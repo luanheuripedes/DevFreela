@@ -1,4 +1,5 @@
-﻿using DevFreela.Infrastructure.Persistence;
+﻿using DevFreela.Core.Repositories;
+using DevFreela.Infrastructure.Persistence;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,20 +12,20 @@ namespace DevFreela.Application.Commands.DeleteProject
     public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand, Unit>
     {
 
-        private readonly DevFreelaDbContext _contex;
+        private readonly IProjectRepository _repository;
 
-        public DeleteProjectCommandHandler(DevFreelaDbContext contex)
+        public DeleteProjectCommandHandler(IProjectRepository repository)
         {
-            _contex = contex;
+            _repository = repository;
         }
 
         public async Task<Unit> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
         {
-            var project = _contex.Projects.SingleOrDefault(p => p.Id == request.Id);
+            var project = await _repository.GetByIdAsync(request.Id);
 
             project.CancelProject();
 
-            await _contex.SaveChangesAsync();
+            await _repository.DeleteProjectAsync(project);
 
             return Unit.Value;
         }
