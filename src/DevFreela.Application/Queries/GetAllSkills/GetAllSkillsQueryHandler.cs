@@ -1,5 +1,7 @@
 ﻿using Dapper;
 using DevFreela.Application.ViewModels.SkillViewModels;
+using DevFreela.Core.DTOs;
+using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.Data.SqlClient;
@@ -12,35 +14,19 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Application.Queries.GetAllSkills
 {
-    public class GetAllSkillsQueryHandler : IRequestHandler<GetAllSkillsQuery, List<SkillViewModel>>
+    public class GetAllSkillsQueryHandler : IRequestHandler<GetAllSkillsQuery, List<SkillDTO>>
     {
 
-        private readonly string _connectionString;
+        private readonly ISkillRepository _repository;
 
-        public GetAllSkillsQueryHandler(IConfiguration configuration)
+        public GetAllSkillsQueryHandler(ISkillRepository repository)
         {
-            _connectionString = _connectionString = configuration.GetConnectionString("DevFreelaCs");
+            _repository = repository;
         }
 
-        public async Task<List<SkillViewModel>> Handle(GetAllSkillsQuery request, CancellationToken cancellationToken)
+        public async Task<List<SkillDTO>> Handle(GetAllSkillsQuery request, CancellationToken cancellationToken)
         {
-            using (var sqlConnection = new SqlConnection(_connectionString))
-            {
-                await sqlConnection.OpenAsync();
-
-                var sql = "SELECT Id, Description FROM Skills";
-
-                var skills = await sqlConnection.QueryAsync<SkillViewModel>(sql);
-
-                return skills.ToList();
-
-                /*
-                 * var skills = _context.Skills;
-                 var skillsModel = _contex.Skills.Select(s => new SkillViewModel(s.Id,s.Description)).ToList();
-
-                  return skillsModel; 
-                 */
-            }
+            return await _repository.GetAllAsync();
         }
     }
 }
