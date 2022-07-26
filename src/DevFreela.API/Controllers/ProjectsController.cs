@@ -1,5 +1,4 @@
-﻿using DevFreela.API.Models;
-using DevFreela.API.Models.ModelsProject;
+﻿
 using DevFreela.Application.Commands.CreateComment;
 using DevFreela.Application.Commands.CreateProject;
 using DevFreela.Application.Commands.DeleteProject;
@@ -59,9 +58,10 @@ namespace DevFreela.API.Controllers
         public async Task<IActionResult> Post([FromBody] CreateProjectCommand  command)
         {
 
-            if (command.Title.Length > 50)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                var messages = ModelState.SelectMany(ms => ms.Value.Errors).Select(e => e.ErrorMessage).ToList();
+                return BadRequest(messages);
             }
 
             var id = await _mediator.Send(command);

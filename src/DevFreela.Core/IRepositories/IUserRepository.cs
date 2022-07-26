@@ -10,5 +10,6 @@ namespace DevFreela.Core.IRepositories
     public interface IUserRepository
     {
         Task<User> GetByIdAsync(int id);
+        Task CreateUserAsync(User user);
     }
 }
