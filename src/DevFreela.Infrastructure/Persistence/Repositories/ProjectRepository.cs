@@ -24,6 +24,12 @@ namespace DevFreela.Infrastructure.Repositories
             _connectionString = configuration.GetConnectionString("DevFreelaDbContext");
         }
 
+        public async Task CreateCommentAsync(ProjectComment comment)
+        {
+            await _context.ProjectsComments.AddAsync(comment);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task CreateProjectAsync(Project project)
         {
             await _context.Projects.AddAsync(project);

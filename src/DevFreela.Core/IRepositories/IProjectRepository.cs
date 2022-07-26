@@ -16,5 +16,6 @@ namespace DevFreela.Core.Repositories
         Task FinishProjectAsync(Project project);
         Task StartProjectAsync(Project project);
         Task SaveChangesAsync();
+        Task CreateCommentAsync(ProjectComment comment);
     }
 }
