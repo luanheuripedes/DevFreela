@@ -1,3 +1,4 @@
+using DevFreela.API.Filters;
 using DevFreela.Application.Commands.CreateProject;
 using DevFreela.Application.Services.Implementations;
 using DevFreela.Application.Services.Interfaces;
@@ -39,9 +40,10 @@ builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 //busca no Assembly Application todas as classes que implementem IRequest<> 
 //e associar a todos o commands handler que implementam IRequestHandler<>
 builder.Services.AddMediatR(typeof(CreateProjectCommand));
-
-
-builder.Services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateUserCommandValidator>());
+    
+                                             //Configuração do fluentValidator e do validation Filter
+builder.Services.AddControllers(options => 
+    options.Filters.Add(typeof(ValidationFilter))).AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateUserCommandValidator>());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
