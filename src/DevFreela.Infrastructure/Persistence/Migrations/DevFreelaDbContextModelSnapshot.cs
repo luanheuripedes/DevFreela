@@ -146,6 +146,14 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
@@ -200,7 +208,7 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("DevFreela.Core.Entities.User", "User")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -241,6 +249,8 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("DevFreela.Core.Entities.User", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("FreelanceProjects");
 
                     b.Navigation("OwnedProjects");
