@@ -24,15 +24,15 @@ namespace DevFreela.API.Controllers
             var query = new GetUserByIdQuery(id);
 
             var user = await _mediator.Send(query);
-            return Ok();
+            return Ok(user);
         }
 
         // api/users/
         
-        [HttpPost]
-        public IActionResult Post([FromBody] CreateUserCommand createUserCommand)
+        [HttpPost("create")]
+        public async Task<IActionResult> Post([FromBody] CreateUserCommand createUserCommand)
         {
-            var id = _mediator.Send(createUserCommand);
+            var id = await _mediator.Send(createUserCommand);
             return CreatedAtAction(nameof(GetById), new { id = id}, createUserCommand);
         }
 

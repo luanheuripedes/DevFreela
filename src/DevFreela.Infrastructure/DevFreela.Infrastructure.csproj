@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Persistence\Migrations\20220718134823_First Migration.cs" />
+    <Compile Remove="Persistence\Migrations\20220718134823_First Migration.Designer.cs" />
+    <Compile Remove="Persistence\Migrations\20220727164734_AddLoginColums.cs" />
+    <Compile Remove="Persistence\Migrations\20220727164734_AddLoginColums.Designer.cs" />
+    <Compile Remove="Persistence\Migrations\DevFreelaDbContextModelSnapshot.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">

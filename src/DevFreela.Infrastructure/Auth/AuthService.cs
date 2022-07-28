@@ -16,9 +16,9 @@ namespace DevFreela.Infrastructure.Auth
     {
 
         private readonly IConfiguration _configuration;
-        public AuthService(IConfiguration _configuration)
+        public AuthService(IConfiguration configuration)
         {
-            _configuration = _configuration;
+            _configuration = configuration;
         }
 
         public string ComputeSha256Hash(string password)
