@@ -21,7 +21,7 @@ namespace DevFreela.Application.Validators
             RuleFor(p => p.Name).NotEmpty().NotNull().WithMessage("O nome é obrigatorio");
         }
 
-        public bool ValidPassword(string password)
+        private bool ValidPassword(string password)
         {
             var regex = new Regex(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
 
