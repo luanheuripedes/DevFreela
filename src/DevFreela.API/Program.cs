@@ -20,7 +20,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Configuration.GetValue<string>("Env");   //Aqui
 
 //Acessar propriedades appsettings
 //builder.Services.Configure<OpeningTimeOption>(builder.Configuration.GetSection("OpeningTime"));
@@ -105,7 +105,9 @@ builder.Services.AddSwaggerGen(c =>
                  });
 });
 
+
 var app = builder.Build();
+app.MapGet("/", () => app.Configuration.GetValue<string>("Env")); //Aqui
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -113,6 +115,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 

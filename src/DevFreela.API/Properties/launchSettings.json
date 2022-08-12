@@ -9,7 +9,15 @@
     }
   },
   "profiles": {
-    "DevFreela.API": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "DevFreela.DEV": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -19,13 +27,25 @@
       "applicationUrl": "https://localhost:7063;http://localhost:5063",
       "dotnetRunMessages": true
     },
-    "IIS Express": {
-      "commandName": "IISExpress",
+    "DevFreela.QA": {
+      "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Staging"
+      },
+      "applicationUrl": "https://localhost:7063;http://localhost:5063",
+      "dotnetRunMessages": true
+    },
+    "DevFreela.PROD": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      },
+      "applicationUrl": "https://localhost:7063;http://localhost:5063",
+      "dotnetRunMessages": true
     }
   }
 }
