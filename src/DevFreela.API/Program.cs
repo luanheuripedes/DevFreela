@@ -33,6 +33,8 @@ builder.Configuration.GetValue<string>("Env");   //Aqui
 var connectionString = builder.Configuration.GetConnectionString("DevFreelaCs");
 builder.Services.AddDbContext<DevFreelaDbContext>(options => options.UseSqlServer(connectionString));
 
+//para construir instancias do httpClient em varias partes do sistema para fazer requisições fora
+builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
