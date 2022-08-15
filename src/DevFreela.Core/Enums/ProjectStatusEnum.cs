@@ -13,5 +13,6 @@ namespace DevFreela.Core.Enums
         Supended,
         Cancelled,
         Finished,
+        Pending
     }
 }

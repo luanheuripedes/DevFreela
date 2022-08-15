@@ -40,6 +40,10 @@ namespace DevFreela.Core.Entities
         public User Client { get; private set; }
         public User Freelancer { get; private set; }
 
+        public void SetPaymentPending()
+        {
+            Status = ProjectStatusEnum.Pending;
+        }
         public void CancelProject()
         {
             if(Status == ProjectStatusEnum.InProgress || Status == ProjectStatusEnum.InProgress)

@@ -7,6 +7,7 @@ using DevFreela.Core.IRepositories;
 using DevFreela.Core.Repositories;
 using DevFreela.Core.Services;
 using DevFreela.Infrastructure.Auth;
+using DevFreela.Infrastructure.Payments;
 using DevFreela.Infrastructure.Persistence;
 using DevFreela.Infrastructure.Persistence.Repositories;
 using DevFreela.Infrastructure.Repositories;
@@ -38,6 +39,7 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 
 
