@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DevFreela.Infrastructure.Persistence.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class AcertadoorelacionamentodeSkillCOnfiguration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,8 +88,8 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_UserSkills", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserSkills_Skills_IdUser",
-                        column: x => x.IdUser,
+                        name: "FK_UserSkills_Skills_IdSkill",
+                        column: x => x.IdSkill,
                         principalTable: "Skills",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -149,6 +149,11 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                 name: "IX_Projects_IdFreelancer",
                 table: "Projects",
                 column: "IdFreelancer");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSkills_IdSkill",
+                table: "UserSkills",
+                column: "IdSkill");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserSkills_IdUser",

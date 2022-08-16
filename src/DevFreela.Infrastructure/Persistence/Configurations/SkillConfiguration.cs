@@ -20,7 +20,7 @@ namespace DevFreela.Infrastructure.Persistence.Configurations
             //Relacionamentos
             builder.HasMany(x => x.UserSkills)
                 .WithOne(x => x.Skill)
-                .HasForeignKey(x => x.IdUser);
+                .HasForeignKey(x => x.IdSkill);
         }
     }
 }

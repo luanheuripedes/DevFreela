@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevFreela.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(DevFreelaDbContext))]
-    [Migration("20220727203815_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220816152958_Acertado o relacionamento de Skill COnfiguration")]
+    partial class AcertadoorelacionamentodeSkillCOnfiguration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -177,6 +177,8 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IdSkill");
+
                     b.HasIndex("IdUser");
 
                     b.ToTable("UserSkills", (string)null);
@@ -224,7 +226,7 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                 {
                     b.HasOne("DevFreela.Core.Entities.Skill", "Skill")
                         .WithMany("UserSkills")
-                        .HasForeignKey("IdUser")
+                        .HasForeignKey("IdSkill")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

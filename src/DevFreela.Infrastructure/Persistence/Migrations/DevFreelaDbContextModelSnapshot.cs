@@ -175,6 +175,8 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IdSkill");
+
                     b.HasIndex("IdUser");
 
                     b.ToTable("UserSkills", (string)null);
@@ -222,7 +224,7 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                 {
                     b.HasOne("DevFreela.Core.Entities.Skill", "Skill")
                         .WithMany("UserSkills")
-                        .HasForeignKey("IdUser")
+                        .HasForeignKey("IdSkill")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
