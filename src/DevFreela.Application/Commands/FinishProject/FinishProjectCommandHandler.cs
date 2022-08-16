@@ -39,7 +39,7 @@ namespace DevFreela.Application.Commands.FinishProject
 
             await _repository.SaveChangesAsync();
 
-            return result;
+            return Unit.Value;
         }
     }
 }

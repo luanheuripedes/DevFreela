@@ -42,7 +42,7 @@ namespace DevFreela.API.Controllers
 
         
         // api/users/login
-        [HttpPut("login")]
+        [HttpPost("login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
         {

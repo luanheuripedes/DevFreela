@@ -117,7 +117,7 @@ namespace DevFreela.API.Controllers
         [Authorize(Roles = "client")]
         public async Task<IActionResult> Finish(int id)
         {
-            var command = new FinishProjectCommand(id);
+            var command = new FinishProjectCommand();
             await _mediator.Send(command);
             return NoContent();
         }
