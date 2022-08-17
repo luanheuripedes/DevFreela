@@ -1,4 +1,5 @@
 ﻿using DevFreela.Application.Commands.CreateProject;
+using DevFreela.Application.Consumers;
 using DevFreela.Application.Services.Implementations;
 using DevFreela.Application.Services.Interfaces;
 using DevFreela.Core.IRepositories;
@@ -19,7 +20,8 @@ namespace DevFreela.API.Extensions
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
-
+            //Adicionado o hostedService para ficar escutando indefinidamente
+            services.AddHostedService<PaymentApprovedConsumer>();
             //Adiciona o MediatR
             //busca no Assembly Application todas as classes que implementem IRequest<> 
             //e associar a todos o commands handler que implementam IRequestHandler<>
