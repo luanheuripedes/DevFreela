@@ -125,7 +125,7 @@ namespace DevFreela.API.Controllers
                 return BadRequest("O pagamento não pode ser processado.");
             }
 
-            return NoContent();
+            return Accepted(); //uma mensagem de sucesso mas o resultado vai ser feito posteriormente
         }
     }
 }
