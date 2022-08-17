@@ -9,6 +9,6 @@ namespace DevFreela.Application.Services.Interfaces
 {
     public interface IPaymentService
     {
-        public Task<bool> ProcessPayment(PaymentInfoDTO paymentInfoDTO);
+        void ProcessPayment(PaymentInfoDTO paymentInfoDTO);
     }
 }

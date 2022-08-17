@@ -1,5 +1,6 @@
 ﻿using DevFreela.Application.Services.Interfaces;
 using DevFreela.Core.DTOs;
+using DevFreela.Core.IServices;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -16,19 +17,26 @@ namespace DevFreela.Infrastructure.Payments
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly string _paymentBaseUrl;
 
-        public PaymentService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        private readonly IMessageBusService _messageBusService;
+        private const string queue_name = "Payments";
+
+        public PaymentService(IHttpClientFactory httpClientFactory, IConfiguration configuration, IMessageBusService messageBusService)
         {
             _httpClientFactory = httpClientFactory;
             _paymentBaseUrl = configuration.GetSection("Services:Payments").Value;
+            _messageBusService = messageBusService;
         }
 
-        public async Task<bool>  ProcessPayment(PaymentInfoDTO paymentInfoDTO)
+        public void  ProcessPayment(PaymentInfoDTO paymentInfoDTO)
         {
+            /*
             //chama o microsserviço de pagamento atraves do httpClient
-            var url = $"{_paymentBaseUrl}/api/payments";
+            //Não mais usado pois agora esta sendo usado mensageria e era feito uma chamada http
+            //var url = $"{_paymentBaseUrl}/api/payments";
 
             var paymentInfoJson = JsonSerializer.Serialize(paymentInfoDTO);
 
+            
             var paymentInfoContet = new StringContent(
                     paymentInfoJson,
                     Encoding.UTF8,
@@ -38,8 +46,19 @@ namespace DevFreela.Infrastructure.Payments
             var httpClient = _httpClientFactory.CreateClient("Payments");
 
             var response = await httpClient.PostAsync(url, paymentInfoContet);
+            */
 
-            return response.IsSuccessStatusCode;
+
+            //Com rabbitMq
+
+            //transforma o paymentInfoDTO em uma string json
+            var paymentInfoJson = JsonSerializer.Serialize(paymentInfoDTO);
+
+            //transforma o json em bytes
+            var paymentInfoBytes = Encoding.UTF8.GetBytes(paymentInfoJson);
+
+            _messageBusService.Publish(queue_name, paymentInfoBytes);
+ 
         }
     }
 }
