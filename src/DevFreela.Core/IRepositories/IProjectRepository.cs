@@ -1,4 +1,5 @@
 ﻿using DevFreela.Core.Entities;
+using DevFreela.Infrastructure.Persistence.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace DevFreela.Core.Repositories
 {
     public interface IProjectRepository
     {
-        Task<List<Project>> GetAllAsync(string query);
+        Task<PaginationResult<Project>> GetAllAsync(string query, int page = 1);
         Task<Project> GetByIdAsync(int id);
         Task CreateProjectAsync(Project project);
         Task DeleteProjectAsync(Project project);

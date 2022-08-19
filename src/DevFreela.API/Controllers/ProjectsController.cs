@@ -29,9 +29,8 @@ namespace DevFreela.API.Controllers
         //api/projects?query=net core
         [HttpGet]
         [Authorize(Roles = "client,freelancer,admin")]
-        public async Task<IActionResult> Get(string? query)
+        public async Task<IActionResult> Get(GetAllProjectsQuery getAllProjectsQuery)
         {
-            var getAllProjectsQuery = new GetAllProjectsQuery(query);
 
             var projects = await _mediator.Send(getAllProjectsQuery);
 

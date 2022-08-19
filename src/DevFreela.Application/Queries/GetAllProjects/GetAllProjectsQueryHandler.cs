@@ -1,6 +1,7 @@
 ﻿using DevFreela.Application.ViewModels.ProjectViewModels;
 using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
+using DevFreela.Infrastructure.Persistence.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DevFreela.Application.Queries.GetAllProjects
 {
-    public class GetAllProjectsQueryHandler : IRequestHandler<GetAllProjectsQuery, List<ProjectViewModel>>
+    public class GetAllProjectsQueryHandler : IRequestHandler<GetAllProjectsQuery, PaginationResult<ProjectViewModel>>
     {
         private readonly IProjectRepository _repository;
 
@@ -20,13 +21,22 @@ namespace DevFreela.Application.Queries.GetAllProjects
             _repository = repository;
         }
 
-        public async Task<List<ProjectViewModel>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
+        public async Task<PaginationResult<ProjectViewModel>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
         {
-            var projects = await _repository.GetAllAsync(request.Query);
+            var paginationProjects = await _repository.GetAllAsync(request.Query, request.Page);
 
-            var projectsViewModel =  projects.Select(p => new ProjectViewModel(p.Title, p.CreatedAt, p.Id)).ToList();
+            var projectsViewModel = paginationProjects
+                                    .Data.Select(p => new ProjectViewModel(p.Title, p.CreatedAt, p.Id)).ToList();
 
-            return projectsViewModel;
+            var paginationProjectViewModel = new PaginationResult<ProjectViewModel>(
+                paginationProjects.Page,
+                paginationProjects.TotalPages,
+                paginationProjects.PageSize,
+                paginationProjects.ItemsCount,
+                projectsViewModel
+                );
+
+            return paginationProjectViewModel;
         }
     }
 }
