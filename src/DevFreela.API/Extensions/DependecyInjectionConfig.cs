@@ -41,7 +41,7 @@ namespace DevFreela.API.Extensions
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IMessageBusService, MessageBusService>();
 
-
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

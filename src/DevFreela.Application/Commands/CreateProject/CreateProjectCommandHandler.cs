@@ -13,17 +13,20 @@ namespace DevFreela.Application.Commands.CreateProject
     //Classe que vai tratar e guardar as informações no banco de dados
     public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, int>
     {
-        private readonly IProjectRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateProjectCommandHandler(IProjectRepository repository)
+        public CreateProjectCommandHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<int> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
             var project = new Project(request.Title, request.Description, request.IdClient, request.IdFreelancer, request.TotalCost);
-            await _repository.CreateProjectAsync(project);
+
+            await _unitOfWork.Projects.CreateProjectAsync(project);
+
+            await _unitOfWork.CompleteAsync();
             return project.Id;
         }
     }

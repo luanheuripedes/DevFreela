@@ -35,7 +35,7 @@ namespace DevFreela.Infrastructure.Repositories
         public async Task CreateProjectAsync(Project project)
         {
             await _context.Projects.AddAsync(project);
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
         }
 
         public async Task DeleteProjectAsync(Project project)

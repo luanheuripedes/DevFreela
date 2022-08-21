@@ -1,6 +1,7 @@
 ﻿using DevFreela.Application.Commands.CreateProject;
 using DevFreela.Core.Entities;
 using DevFreela.Core.Repositories;
+using DevFreela.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,8 @@ namespace DevFreela.UnitTests.Application.Commands
         public async Task InputDateIsOk_Executed_ReturnProjectId()
         {
             //Arrange
-            var projectRepository = new Mock<IProjectRepository>();
+            //var projectRepository = new Mock<IProjectRepository>();
+            var unitOfWork = new Mock<IUnitOfWork>();
 
             var createProjectCommand = new CreateProjectCommand
             {
@@ -28,7 +30,7 @@ namespace DevFreela.UnitTests.Application.Commands
                 IdFreelancer = 2
             };
 
-            var createProjectCommandHandler = new CreateProjectCommandHandler(projectRepository.Object);
+            var createProjectCommandHandler = new CreateProjectCommandHandler(unitOfWork.Object);
 
 
             //Act
@@ -38,7 +40,7 @@ namespace DevFreela.UnitTests.Application.Commands
             //Assert
             Assert.True(id >= 0);
 
-            projectRepository.Verify(pr => pr.CreateProjectAsync(It.IsAny<Project>()), Times.Once);
+            unitOfWork.Verify(pr => pr.Projects.CreateProjectAsync(It.IsAny<Project>()), Times.Once);
         }
     }
 }
