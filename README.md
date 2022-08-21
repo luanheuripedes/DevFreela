@@ -1,7 +1,7 @@
 # DevFreela
 Projeto construído no módulo Formação ASP NET CORE, utilizando .NET6
 
-## É uma API para implementar funcionalidades necessárias para um sistema de freelance. Onde o cliente loga e cria um projeto, o programador vê aquele projeto, combina com o cliente e então começa a desenvolve-lo.
+## É uma API que implementa funcionalidades necessárias para um sistema de freelance. Onde o cliente loga e cria um projeto, o programador vê aquele projeto, combina com o cliente e então começa a desenvolve-lo.
 
 ### Swagger
   Simplifica o desenvolvimento de APIs, documentado e ajudando nos teste das APIs. O Swagger gera uma interface contendo os EndPoints, assim podendo realizar as requisições de sua interface.
