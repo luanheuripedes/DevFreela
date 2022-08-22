@@ -30,6 +30,11 @@ namespace DevFreela.Infrastructure.Persistence.Configurations
                 .WithOne(u => u.Freelancer)
                 .HasForeignKey(u => u.IdFreelancer)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(u => u.Comments)
+                .WithOne(u => u.User)
+                .HasForeignKey(u => u.IdUser)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

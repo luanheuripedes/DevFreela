@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevFreela.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(DevFreelaDbContext))]
-    [Migration("20220816152958_Acertado o relacionamento de Skill COnfiguration")]
-    partial class AcertadoorelacionamentodeSkillCOnfiguration
+    [Migration("20220822004258_adicionando a referencia correta de comments e project")]
+    partial class adicionandoareferenciacorretadecommentseproject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,14 +91,11 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IdProject");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("IdUser");
 
                     b.ToTable("ProjectComments", (string)null);
                 });
@@ -213,8 +210,8 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
 
                     b.HasOne("DevFreela.Core.Entities.User", "User")
                         .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Project");

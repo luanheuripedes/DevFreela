@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DevFreela.Infrastructure.Persistence.Migrations
 {
-    public partial class AcertadoorelacionamentodeSkillCOnfiguration : Migration
+    public partial class adicionandoareferenciacorretadecommentseproject : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -110,8 +110,7 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdProject = table.Column<int>(type: "int", nullable: false),
-                    IdUser = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    IdUser = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -123,11 +122,11 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProjectComments_User_UserId",
-                        column: x => x.UserId,
+                        name: "FK_ProjectComments_User_IdUser",
+                        column: x => x.IdUser,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -136,9 +135,9 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                 column: "IdProject");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProjectComments_UserId",
+                name: "IX_ProjectComments_IdUser",
                 table: "ProjectComments",
-                column: "UserId");
+                column: "IdUser");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_IdClient",

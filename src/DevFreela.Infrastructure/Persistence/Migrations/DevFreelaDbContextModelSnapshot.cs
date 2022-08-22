@@ -89,14 +89,11 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
                     b.Property<int>("IdUser")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IdProject");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("IdUser");
 
                     b.ToTable("ProjectComments", (string)null);
                 });
@@ -211,8 +208,8 @@ namespace DevFreela.Infrastructure.Persistence.Migrations
 
                     b.HasOne("DevFreela.Core.Entities.User", "User")
                         .WithMany("Comments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Project");
