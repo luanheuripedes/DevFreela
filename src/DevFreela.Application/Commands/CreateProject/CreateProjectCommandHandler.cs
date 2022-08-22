@@ -23,10 +23,20 @@ namespace DevFreela.Application.Commands.CreateProject
         public async Task<int> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
             var project = new Project(request.Title, request.Description, request.IdClient, request.IdFreelancer, request.TotalCost);
+            project.Comments.Add(new ProjectComment("Project wa created", project.Id, project.IdClient));
+
+            await _unitOfWork.BeginTransactionAsync();
 
             await _unitOfWork.Projects.CreateProjectAsync(project);
 
             await _unitOfWork.CompleteAsync();
+
+            await _unitOfWork.Skills.AddSkillFromProject(project);
+
+            await _unitOfWork.CompleteAsync();
+
+            await _unitOfWork.CommitAsync();
+
             return project.Id;
         }
     }
