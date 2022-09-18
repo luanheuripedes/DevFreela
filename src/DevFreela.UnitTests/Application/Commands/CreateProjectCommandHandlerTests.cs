@@ -18,8 +18,13 @@ namespace DevFreela.UnitTests.Application.Commands
         public async Task InputDateIsOk_Executed_ReturnProjectId()
         {
             //Arrange
-            //var projectRepository = new Mock<IProjectRepository>();
             var unitOfWork = new Mock<IUnitOfWork>();
+
+            var projectRepository = new Mock<IProjectRepository>();
+            var skillRepository = new Mock<ISkillRepository>();
+
+            unitOfWork.SetupGet(uow => uow.Projects).Returns(projectRepository.Object);
+            unitOfWork.SetupGet(uow => uow.Skills).Returns(skillRepository.Object);
 
             var createProjectCommand = new CreateProjectCommand
             {
