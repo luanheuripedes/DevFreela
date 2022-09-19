@@ -73,6 +73,7 @@ namespace DevFreela.Infrastructure.Repositories
            return await _context.Projects
                .Include(x => x.Client)
                .Include(x => x.Freelancer)
+               .AsNoTracking()
                .SingleOrDefaultAsync(p => p.Id == id);
         }
 
@@ -93,6 +94,11 @@ namespace DevFreela.Infrastructure.Repositories
 
                 await sqlConnection.CloseAsync();
             }
+        }
+
+        public async Task UpdateAsync(Project project)
+        {
+           _context
         }
     }
 }
