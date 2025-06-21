@@ -211,6 +211,4 @@ Se você tiver alguma dúvida ou precisar de ajuda, sinta-se à vontade para:
 
 ---
 
-## 🎓 Agradecimentos
-
 Projeto desenvolvido durante a formação ASP.NET Core, aplicando conceitos modernos de desenvolvimento web e arquitetura de software.
