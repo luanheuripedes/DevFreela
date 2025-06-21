@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,18 @@ namespace DevFreela.Core.Entities
 {
     public class Project: BaseEntity
     {
+        public Project()
+        {
+            Title = string.Empty;
+            Description = string.Empty;
+            IdClient = 0;
+            IdFreelancer = 0;
+            TotalCost = 0.0M;
+
+            CreatedAt = DateTime.Now;
+            Status = ProjectStatusEnum.Created;
+            Comments = new List<ProjectComment>();
+        }
         public Project(string title, string description, int idClient, int idFreelancer, decimal totalCost)
         {
             Title = title;

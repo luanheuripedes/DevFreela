@@ -35,7 +35,7 @@ namespace DevFreela.Infrastructure.Repositories
         public async Task CreateProjectAsync(Project project)
         {
             await _context.Projects.AddAsync(project);
-            //await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteProjectAsync(Project project)
@@ -70,11 +70,13 @@ namespace DevFreela.Infrastructure.Repositories
 
         public async Task<Project> GetByIdAsync(int id)
         {
-           return await _context.Projects
+            var projeto = await _context.Projects
                .Include(x => x.Client)
                .Include(x => x.Freelancer)
                .AsNoTracking()
                .SingleOrDefaultAsync(p => p.Id == id);
+
+            return projeto ?? new Project();
         }
 
         public async Task SaveChangesAsync()
@@ -92,13 +94,13 @@ namespace DevFreela.Infrastructure.Repositories
 
                 await sqlConnection.ExecuteAsync(sql, new { status = project.Status, startedat = project.StartedAt, id = project.Id });
 
-                await sqlConnection.CloseAsync();
             }
         }
 
         public async Task UpdateAsync(Project project)
         {
-           //_context
+            _context.Update(project);
+            await _context.SaveChangesAsync();
         }
     }
 }
