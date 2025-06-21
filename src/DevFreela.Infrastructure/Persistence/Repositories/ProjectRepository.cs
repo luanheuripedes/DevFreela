@@ -16,7 +16,7 @@ namespace DevFreela.Infrastructure.Repositories
 {
     public class ProjectRepository: IProjectRepository
     {
-        private const int page_size = 2;
+        private const int PAGE_SIZE = 2;
         private readonly DevFreelaDbContext _context;
         private readonly string _connectionString;
 
@@ -65,7 +65,7 @@ namespace DevFreela.Infrastructure.Repositories
             }
 
 
-            return await projects.GetPaged<Project>(page, page_size);
+            return await projects.GetPaged<Project>(page, PAGE_SIZE);
         }
 
         public async Task<Project> GetByIdAsync(int id)
@@ -98,7 +98,7 @@ namespace DevFreela.Infrastructure.Repositories
 
         public async Task UpdateAsync(Project project)
         {
-           _context
+           //_context
         }
     }
 }
